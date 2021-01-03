@@ -13,26 +13,26 @@ app.use(
 app.post("/", function (req, res) {
   const message = req.body.message;
 
-  if (!message) {
-    return res.end();
+  if (message) {
+    axios
+      .post(
+        "https://api.telegram.org/bot1234111483:AAEUbW5tSvPkHqOAsM2mP312UsR3eC8RtMg/sendMessage",
+        {
+          chat_id: message.chat.id,
+          text: "Hey!! My cat is gorgeous!!!!",
+        }
+      )
+      .then((response) => {
+        console.log("Message posted");
+        res.end("ok");
+      })
+      .catch((err) => {
+        console.log("Error: ", err);
+        res.end("Error: ", err);
+      });
+  } else {
+    res.status(200).send({});
   }
-
-  axios
-    .post(
-      "https://api.telegram.org/bot1234111483:AAEUbW5tSvPkHqOAsM2mP312UsR3eC8RtMg/sendMessage",
-      {
-        chat_id: message.chat.id,
-        text: "Hey!! My cat is gorgeous!!!!",
-      }
-    )
-    .then((response) => {
-      console.log("Message posted");
-      res.end("ok");
-    })
-    .catch((err) => {
-      console.log("Error: ", err);
-      res.end("Error: ", err);
-    });
 });
 
 app.listen(3000, function () {
