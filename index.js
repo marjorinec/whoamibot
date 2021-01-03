@@ -10,7 +10,7 @@ app.use(
   })
 );
 
-app.post("/new-message", function (req, res) {
+app.post("/", function (req, res) {
   const message = req.body.message;
 
   if (!message) {
