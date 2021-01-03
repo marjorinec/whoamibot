@@ -7,11 +7,11 @@ const telegramApiUrl = "https://api.telegram.org/bot";
 const botToken = "1234111483:AAEUbW5tSvPkHqOAsM2mP312UsR3eC8RtMg";
 
 app.use(bodyParser.json());
-// app.use(
-//   bodyParser.urlencoded({
-//     extended: true,
-//   })
-// );
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
 
 app.post("/", function (req, res) {
   const message = req.body.message.text;
@@ -21,7 +21,7 @@ app.post("/", function (req, res) {
     axios
       .post(`${telegramApiUrl}${botToken}/sendMessage`, {
         chat_id: chatId,
-        text: "Hey!! My cat is gorgeous!!!!",
+        text: "NÃO TEM SHINGEKI HOJE PORRAAAAAA",
       })
       .then((response) => {
         console.log("Message posted");
