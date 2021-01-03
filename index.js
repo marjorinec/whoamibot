@@ -4,11 +4,11 @@ const bodyParser = require("body-parser");
 const axios = require("axios");
 
 app.use(bodyParser.json());
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  })
-);
+// app.use(
+//   bodyParser.urlencoded({
+//     extended: true,
+//   })
+// );
 
 app.post("/", function (req, res) {
   const message = req.body.message;
@@ -24,7 +24,7 @@ app.post("/", function (req, res) {
       )
       .then((response) => {
         console.log("Message posted");
-        res.end("ok");
+        res.status(200).send(response);
       })
       .catch((err) => {
         console.log("Error: ", err);
