@@ -11,7 +11,7 @@ app.use(
 );
 
 app.post("/new-message", function (req, res) {
-  const { message } = req.body;
+  const message = req.body.message;
 
   if (!message) {
     return res.end();
