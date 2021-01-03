@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "A Telegram Bot to play that Inglourious Basterds game.",
   "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
   "repository": "https://github.com/alcoelho/whoamibot",
   "author": "Alline Marjorie",
   "license": "MIT",
