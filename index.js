@@ -2,6 +2,9 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const axios = require("axios");
+const port = 3000;
+const telegramApiUrl = "https://api.telegram.org/bot";
+const botToken = "1234111483:AAEUbW5tSvPkHqOAsM2mP312UsR3eC8RtMg";
 
 app.use(bodyParser.json());
 // app.use(
@@ -11,17 +14,15 @@ app.use(bodyParser.json());
 // );
 
 app.post("/", function (req, res) {
-  const message = req.body.message;
+  const message = req.body.message.text;
+  const chatId = req.body.message.chat.id;
 
   if (message) {
     axios
-      .post(
-        "https://api.telegram.org/bot1234111483:AAEUbW5tSvPkHqOAsM2mP312UsR3eC8RtMg/sendMessage",
-        {
-          chat_id: message.chat.id,
-          text: "Hey!! My cat is gorgeous!!!!",
-        }
-      )
+      .post(`${telegramApiUrl}${botToken}/sendMessage`, {
+        chat_id: chatId,
+        text: "Hey!! My cat is gorgeous!!!!",
+      })
       .then((response) => {
         console.log("Message posted");
         res.status(200).send(response);
@@ -35,6 +36,6 @@ app.post("/", function (req, res) {
   }
 });
 
-app.listen(3000, function () {
-  console.log("Who Am I Bot listening on port 3000!");
+app.listen(port, function () {
+  console.log(`Who Am I Bot listening on port ${port}`);
 });
